@@ -97,6 +97,44 @@ export default function ExploreKalamPage() {
         </section>
 
         <section className="px-5 py-16 sm:px-8">
+          <div className="mx-auto max-w-6xl">
+            <Reveal>
+              <h2 className="font-heading text-2xl text-ink">A look at the valley</h2>
+            </Reveal>
+            <RevealStagger className="mx-auto mt-8 grid max-w-2xl gap-5 sm:grid-cols-2">
+              <RevealItem className="relative aspect-[9/16] overflow-hidden rounded-2xl">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 h-full w-full object-cover"
+                >
+                  <source src="/assets/videos/forest.mp4" type="video/mp4" />
+                </video>
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 text-sm text-white">
+                  A walk through Ushu Forest
+                </span>
+              </RevealItem>
+              <RevealItem className="relative aspect-[9/16] overflow-hidden rounded-2xl">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 h-full w-full object-cover"
+                >
+                  <source src="/assets/videos/guest-clip-1.mp4" type="video/mp4" />
+                </video>
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 text-sm text-white">
+                  The Ushu River running through the valley
+                </span>
+              </RevealItem>
+            </RevealStagger>
+          </div>
+        </section>
+
+        <section className="px-5 py-16 sm:px-8">
           <Reveal className="mx-auto max-w-3xl rounded-2xl bg-pine px-6 py-10 text-center text-white sm:px-12">
             <Clock className="mx-auto size-8 text-amber" />
             <h2 className="mt-4 font-heading text-2xl">Best time to visit</h2>

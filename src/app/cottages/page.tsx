@@ -53,6 +53,33 @@ export default async function CottagesPage() {
           </div>
         </section>
 
+        <section className="bg-mist/30 px-5 py-16 sm:px-8 lg:px-10">
+          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-center">
+            <Reveal className="relative mx-auto aspect-[9/16] w-full max-w-sm overflow-hidden rounded-2xl">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/assets/images/interior-bedroom.jpg"
+                className="absolute inset-0 h-full w-full object-cover"
+              >
+                <source src="/assets/videos/interior-tour.mp4" type="video/mp4" />
+              </video>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="font-heading text-2xl text-ink sm:text-3xl">
+                Step inside
+              </h2>
+              <p className="mt-4 text-stone">
+                Wood-panelled walls, working fireplaces, and proper heating —
+                every cottage is built for the mountain weather, not just the
+                view of it. Take a quick look around before you book.
+              </p>
+            </Reveal>
+          </div>
+        </section>
+
         <section className="relative overflow-hidden px-5 py-20 sm:px-8 lg:px-10">
           <Image
             src="/assets/images/exterior-night-pathway.jpg"

@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw video source (too large to commit, kept locally only)
+public/assets/videos/New.mp4
