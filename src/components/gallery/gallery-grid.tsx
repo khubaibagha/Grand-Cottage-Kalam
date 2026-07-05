@@ -23,33 +23,37 @@ export function GalleryGrid({ items }: { items: GalleryItem[] }) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-x-7 gap-y-2 border-b border-ink/10 pb-4">
         {TABS.map((tab) => (
           <button
             key={tab}
             onClick={() => setFilter(tab)}
             className={cn(
-              "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-              filter === tab
-                ? "bg-river text-white"
-                : "bg-mist text-stone hover:bg-mist/70",
+              "field-note relative pb-1 text-[10px] transition-colors duration-300",
+              filter === tab ? "text-ink" : "text-stone/70 hover:text-ink",
             )}
           >
             {tab}
+            <span
+              className={cn(
+                "absolute inset-x-0 -bottom-[17px] h-px bg-ink transition-transform duration-500 ease-out",
+                filter === tab ? "scale-x-100" : "scale-x-0",
+              )}
+            />
           </button>
         ))}
       </div>
 
       <RevealStagger
         key={filter}
-        className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4"
+        className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3"
       >
         {filtered.map((item) => (
           <motion.button
             key={item.src + item.alt}
             variants={revealItem}
             onClick={() => setActive(item)}
-            className="group relative aspect-[4/3] overflow-hidden rounded-xl"
+            className="group relative aspect-[4/3] overflow-hidden"
           >
             {item.type === "video" ? (
               <video
@@ -59,22 +63,24 @@ export function GalleryGrid({ items }: { items: GalleryItem[] }) {
                 loop
                 playsInline
                 autoPlay
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                preload="metadata"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
               />
             ) : (
               <Image
                 src={item.src}
                 alt={item.alt}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="(min-width: 640px) 33vw, 50vw"
+                className="object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
               />
             )}
             {item.type === "video" && (
-              <span className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-black/50 text-white">
-                <Play className="size-3.5 fill-current" />
+              <span className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-full bg-pine-deep/60 text-white backdrop-blur-sm">
+                <Play className="size-3 fill-current" />
               </span>
             )}
-            <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-3 py-2 text-left text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
+            <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-pine-deep/70 to-transparent px-3 pb-2.5 pt-8 text-left text-xs text-white opacity-0 transition-opacity duration-500 group-hover:opacity-100">
               {item.alt}
             </span>
           </motion.button>
@@ -88,13 +94,14 @@ export function GalleryGrid({ items }: { items: GalleryItem[] }) {
         >
           <DialogTitle className="sr-only">{active?.alt}</DialogTitle>
           {active && (
-            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
+            <div className="relative aspect-[3/2] w-full overflow-hidden">
               {active.type === "video" ? (
                 <video
                   src={active.src}
                   poster={active.poster}
                   controls
                   autoPlay
+                  muted
                   loop
                   playsInline
                   className="absolute inset-0 h-full w-full object-cover"
@@ -104,17 +111,18 @@ export function GalleryGrid({ items }: { items: GalleryItem[] }) {
                   src={active.src}
                   alt={active.alt}
                   fill
+                  sizes="90vw"
                   className="object-cover"
                 />
               )}
               <button
                 onClick={() => setActive(null)}
                 aria-label={active.type === "video" ? "Close video" : "Close image"}
-                className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70"
+                className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-full bg-pine-deep/60 text-white backdrop-blur-sm transition-colors hover:bg-pine-deep/90"
               >
                 <X className="size-4" />
               </button>
-              <p className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-5 py-4 text-sm text-white">
+              <p className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-pine-deep/80 to-transparent px-5 pb-4 pt-10 text-sm text-white">
                 {active.alt}
               </p>
             </div>

@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Reveal({
   children,
@@ -11,12 +13,16 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      initial={
+        reduceMotion ? false : { opacity: 0, y: 28, filter: "blur(6px)" }
+      }
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, margin: "-72px" }}
+      transition={{ duration: 0.9, delay, ease: EASE }}
       className={className}
     >
       {children}
@@ -31,14 +37,16 @@ export function RevealStagger({
   children: React.ReactNode;
   className?: string;
 }) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial="hidden"
+      initial={reduceMotion ? false : "hidden"}
       whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-72px" }}
       variants={{
         hidden: {},
-        show: { transition: { staggerChildren: 0.08 } },
+        show: { transition: { staggerChildren: 0.09 } },
       }}
       className={className}
     >
@@ -48,8 +56,13 @@ export function RevealStagger({
 }
 
 export const revealItem = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" as const } },
+  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: EASE },
+  },
 };
 
 export function RevealItem({

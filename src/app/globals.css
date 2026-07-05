@@ -8,10 +8,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-note);
   --font-heading: var(--font-display);
 
-  /* Kalam Native brand palette */
+  /* Grand Cottages Kalam — field journal palette */
   --color-pine: var(--pine);
   --color-pine-deep: var(--pine-deep);
   --color-moss: var(--moss);
@@ -59,47 +59,52 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --ease-mountain: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
-  /* Kalam Native brand palette */
-  --pine: #1f3d2b;
-  --pine-deep: #142a1d;
-  --moss: #3e6b4c;
-  --river: #2c7a8c;
-  --river-bright: #4fa8bc;
-  --amber: #c8893a;
-  --cream: #f7f4ec;
-  --mist: #e3e2da;
-  --ink: #1a1c19;
-  --stone: #5b5f58;
+  /* Field journal palette.
+     Legacy token names are kept so every page inherits the new system:
+     pine = spruce dark canvas · cream = birch paper · river = glacial teal
+     amber = lantern gold (micro-doses only) */
+  --pine: #111a14;
+  --pine-deep: #0b130e;
+  --moss: #41684f;
+  --river: #2f6d60;
+  --river-bright: #9ccfc2;
+  --amber: #c39456;
+  --cream: #f3f2ec;
+  --mist: #e2e1d6;
+  --ink: #161a16;
+  --stone: #5a6057;
 
   --background: var(--cream);
   --foreground: var(--ink);
-  --card: #ffffff;
+  --card: #faf9f5;
   --card-foreground: var(--ink);
-  --popover: #ffffff;
+  --popover: #faf9f5;
   --popover-foreground: var(--ink);
-  --primary: var(--river);
-  --primary-foreground: #ffffff;
+  --primary: var(--pine);
+  --primary-foreground: var(--cream);
   --secondary: var(--mist);
   --secondary-foreground: var(--ink);
   --muted: var(--mist);
   --muted-foreground: var(--stone);
-  --accent: var(--amber);
+  --accent: #e9e8e0;
   --accent-foreground: var(--ink);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: var(--mist);
-  --input: var(--mist);
+  --destructive: #9c3a2e;
+  --border: #dbdacd;
+  --input: #d4d3c6;
   --ring: var(--river);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --chart-1: var(--river);
+  --chart-2: var(--moss);
+  --chart-3: var(--amber);
+  --chart-4: var(--stone);
+  --chart-5: var(--pine);
+  --radius: 0.375rem;
   --sidebar: var(--pine);
-  --sidebar-foreground: #ffffff;
+  --sidebar-foreground: #eef0ea;
   --sidebar-primary: var(--river);
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: var(--pine-deep);
@@ -144,10 +149,12 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01" on;
+    text-rendering: optimizeLegibility;
   }
   html {
     @apply scroll-smooth font-sans;
@@ -157,9 +164,43 @@
   h3,
   h4 {
     @apply font-heading;
+    font-weight: 400;
+    letter-spacing: 0.005em;
   }
   ::selection {
     background-color: var(--river);
-    color: #ffffff;
+    color: var(--cream);
+  }
+  :focus-visible {
+    outline: 2px solid var(--river);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Surveyor's field line — the site's structural eyebrow */
+  .field-note {
+    font-family: var(--font-note);
+    font-size: 0.6875rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .price-figure {
+    font-family: var(--font-note);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
   }
 }

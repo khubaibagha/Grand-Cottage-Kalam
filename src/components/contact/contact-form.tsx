@@ -3,7 +3,6 @@
 import * as React from "react";
 import { toast } from "sonner";
 import { Loader2, Send } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -45,18 +44,19 @@ export function ContactForm() {
 
   if (sent) {
     return (
-      <div className="rounded-2xl bg-moss/10 p-6 text-center">
-        <p className="font-heading text-lg text-ink">Message sent</p>
-        <p className="mt-2 text-sm text-stone">
+      <div className="border-l-2 border-moss bg-moss/5 p-8 text-center">
+        <p className="field-note text-[10px] text-moss">Sent</p>
+        <p className="mt-4 font-heading text-xl text-ink">Message sent</p>
+        <p className="mt-2 text-sm leading-relaxed text-stone">
           Thanks for reaching out — we usually reply within a few hours.
         </p>
-        <Button
-          variant="outline"
-          className="mt-4"
+        <button
+          type="button"
           onClick={() => setSent(false)}
+          className="mt-6 border border-ink/25 px-6 py-2.5 text-[12px] tracking-[0.06em] text-ink transition-colors duration-300 hover:border-ink"
         >
           Send another message
-        </Button>
+        </button>
       </div>
     );
   }
@@ -100,14 +100,18 @@ export function ContactForm() {
           className="mt-1.5"
         />
       </div>
-      <Button type="submit" disabled={submitting} className="w-full">
+      <button
+        type="submit"
+        disabled={submitting}
+        className="flex w-full items-center justify-center gap-2 rounded-none bg-ink px-6 py-4 text-[13px] tracking-[0.08em] text-cream transition-colors duration-300 hover:bg-pine disabled:opacity-60"
+      >
         {submitting ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (
           <Send className="size-4" />
         )}
         Send message
-      </Button>
+      </button>
     </form>
   );
 }

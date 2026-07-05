@@ -12,12 +12,12 @@ export default async function BookingPolicyPage() {
   return (
     <>
       <SiteHeader variant="solid" />
-      <main className="flex-1 bg-mist/30 pt-20">
+      <main className="flex-1 bg-cream pt-20">
         <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8">
           <h1 className="font-heading text-3xl text-ink">
             Booking & Cancellation Policy
           </h1>
-          <div className="mt-8 space-y-8 rounded-2xl bg-white p-6 text-sm text-stone shadow-sm ring-1 ring-mist sm:p-10">
+          <div className="mt-8 space-y-8 border border-ink/10 bg-card p-6 text-sm text-stone sm:p-10">
             <section>
               <h2 className="font-heading text-lg text-ink">Reservations</h2>
               <p className="mt-2">

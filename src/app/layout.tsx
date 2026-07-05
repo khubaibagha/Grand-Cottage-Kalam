@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Marcellus, Schibsted_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { DemoBar } from "@/components/site/demo-bar";
 
-const fraunces = Fraunces({
+const marcellus = Marcellus({
   variable: "--font-display",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
-  style: ["normal", "italic"],
+  weight: "400",
 });
 
-const inter = Inter({
+const schibsted = Schibsted_Grotesk({
   variable: "--font-body",
   subsets: ["latin"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-note",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -31,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      className={`${marcellus.variable} ${schibsted.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
         {children}

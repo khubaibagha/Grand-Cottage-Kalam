@@ -190,7 +190,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
     <div className="mx-auto max-w-3xl px-5 py-12 sm:px-8">
       <Stepper steps={STEPS} current={step} />
 
-      <div className="mt-10 overflow-hidden rounded-2xl bg-white p-6 shadow-sm ring-1 ring-mist sm:p-8">
+      <div className="mt-10 overflow-hidden border border-ink/10 bg-card p-6 sm:p-8">
         <AnimatePresence mode="wait">
         {step === 1 && (
           <motion.div
@@ -212,7 +212,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
                 <PopoverTrigger asChild>
                   <button
                     type="button"
-                    className="flex items-center gap-3 rounded-xl border border-mist px-4 py-3 text-left transition-colors hover:border-river/40"
+                    className="flex items-center gap-3 rounded-xl border border-ink/15 px-4 py-3 text-left transition-colors hover:border-river/40"
                   >
                     <CalendarIcon className="size-4 shrink-0 text-river" />
                     <div className="min-w-0">
@@ -241,7 +241,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
               </Popover>
 
               <Select value={guests} onValueChange={setGuests}>
-                <SelectTrigger className="!h-auto w-full justify-start gap-3 rounded-xl border-mist !px-4 !py-3">
+                <SelectTrigger className="!h-auto w-full justify-start gap-3 rounded-md border-ink/20 !px-4 !py-3">
                   <Users className="size-4 shrink-0 text-river" />
                   <SelectValue />
                 </SelectTrigger>
@@ -266,7 +266,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
               <Button
                 onClick={handleDatesContinue}
                 size="lg"
-                className="h-auto rounded-xl bg-amber px-6 py-3 text-white hover:bg-amber/90"
+                className="h-auto rounded-xl bg-ink px-6 py-3 text-cream hover:bg-pine"
               >
                 Check Availability <ArrowRight className="size-4" />
               </Button>
@@ -309,10 +309,10 @@ export function BookingWizard({ settings }: { settings: Settings }) {
                       disabled={!result.available}
                       onClick={() => setSelectedRoomId(result.roomType.id)}
                       className={cn(
-                        "flex w-full items-center gap-4 rounded-xl border p-3 text-left transition-colors disabled:cursor-not-allowed disabled:opacity-50",
+                        "flex w-full items-center gap-4 border p-3 text-left transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-50",
                         selected
-                          ? "border-river bg-river/5"
-                          : "border-mist hover:border-river/40",
+                          ? "border-ink bg-ink/[0.03]"
+                          : "border-ink/15 hover:border-ink/40",
                       )}
                     >
                       <div className="relative size-20 shrink-0 overflow-hidden rounded-lg">
@@ -329,7 +329,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
                             {result.roomType.name}
                           </p>
                           {selected && (
-                            <Check className="size-5 shrink-0 text-river" />
+                            <Check className="size-5 shrink-0 text-ink" strokeWidth={2.5} />
                           )}
                         </div>
                         <p className="text-sm text-stone">
@@ -369,7 +369,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
                 onClick={handleRoomContinue}
                 size="lg"
                 disabled={checkingAvailability}
-                className="h-auto rounded-xl bg-amber px-6 py-3 text-white hover:bg-amber/90"
+                className="h-auto rounded-xl bg-ink px-6 py-3 text-cream hover:bg-pine"
               >
                 Continue <ArrowRight className="size-4" />
               </Button>
@@ -447,7 +447,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
               <Button
                 onClick={handleDetailsContinue}
                 size="lg"
-                className="h-auto rounded-xl bg-amber px-6 py-3 text-white hover:bg-amber/90"
+                className="h-auto rounded-xl bg-ink px-6 py-3 text-cream hover:bg-pine"
               >
                 Review Booking <ArrowRight className="size-4" />
               </Button>
@@ -467,8 +467,8 @@ export function BookingWizard({ settings }: { settings: Settings }) {
               Review your booking
             </h2>
 
-            <div className="mt-6 overflow-hidden rounded-xl ring-1 ring-mist">
-              <div className="flex items-center gap-4 bg-mist/30 p-4">
+            <div className="mt-6 overflow-hidden border border-ink/15">
+              <div className="flex items-center gap-4 bg-mist/40 p-4">
                 <div className="relative size-16 shrink-0 overflow-hidden rounded-lg">
                   <Image
                     src={selectedResult.roomType.heroImage}
@@ -508,7 +508,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
                     <span className="text-right text-ink">{notes}</span>
                   </div>
                 )}
-                <div className="my-2 h-px bg-mist" />
+                <div className="my-2 h-px bg-ink/10" />
                 <div className="flex justify-between text-stone">
                   <span>
                     {formatPKR(selectedResult.ratePerNight)} &times; {nights}{" "}
@@ -557,7 +557,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
               <Button
                 onClick={() => goToStep(5)}
                 size="lg"
-                className="h-auto rounded-xl bg-amber px-6 py-3 text-white hover:bg-amber/90"
+                className="h-auto rounded-xl bg-ink px-6 py-3 text-cream hover:bg-pine"
               >
                 Continue to Payment <ArrowRight className="size-4" />
               </Button>
@@ -594,8 +594,8 @@ export function BookingWizard({ settings }: { settings: Settings }) {
                   className={cn(
                     "flex flex-col items-center gap-2 rounded-xl border p-4 text-center transition-colors",
                     paymentMethod === value
-                      ? "border-river bg-river/5"
-                      : "border-mist hover:border-river/40",
+                      ? "border-ink bg-ink/[0.03]"
+                      : "border-ink/15 hover:border-ink/40",
                   )}
                 >
                   <Icon className="size-5 text-river" />
@@ -605,7 +605,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
             </div>
 
             {paymentMethod === "card" && (
-              <div className="mt-6 space-y-4 rounded-xl border border-mist p-5">
+              <div className="mt-6 space-y-4 rounded-xl border border-ink/15 p-5">
                 <div>
                   <Label>Card number</Label>
                   <Input
@@ -638,7 +638,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
             )}
 
             {(paymentMethod === "jazzcash" || paymentMethod === "easypaisa") && (
-              <div className="mt-6 space-y-4 rounded-xl border border-mist p-5">
+              <div className="mt-6 space-y-4 rounded-xl border border-ink/15 p-5">
                 <div>
                   <Label>
                     {paymentMethod === "jazzcash" ? "JazzCash" : "Easypaisa"}{" "}
@@ -659,7 +659,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
             )}
 
             {paymentMethod === "bank_transfer" && (
-              <div className="mt-6 space-y-4 rounded-xl border border-mist p-5">
+              <div className="mt-6 space-y-4 rounded-xl border border-ink/15 p-5">
                 <div className="space-y-1.5 text-sm">
                   <p className="text-stone">
                     Bank: <span className="text-ink">{settings.bankDetails.bankName}</span>
@@ -685,7 +685,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
                   <Label htmlFor="proof">Upload transfer proof</Label>
                   <label
                     htmlFor="proof"
-                    className="mt-1.5 flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-mist px-4 py-3 text-sm text-stone hover:border-river/40"
+                    className="mt-1.5 flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-ink/25 px-4 py-3 text-sm text-stone hover:border-river/40"
                   >
                     <Upload className="size-4 text-river" />
                     {proofImageName ?? "Choose a screenshot or photo"}
@@ -716,7 +716,7 @@ export function BookingWizard({ settings }: { settings: Settings }) {
                 onClick={handlePayAndBook}
                 size="lg"
                 disabled={submitting}
-                className="h-auto rounded-xl bg-amber px-6 py-3 text-white hover:bg-amber/90"
+                className="h-auto rounded-xl bg-ink px-6 py-3 text-cream hover:bg-pine"
               >
                 {submitting ? (
                   <>

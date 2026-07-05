@@ -1,6 +1,10 @@
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
-import { GalleryGrid, type GalleryItem } from "@/components/gallery/gallery-grid";
+import { FieldNote } from "@/components/site/field-note";
+import {
+  GalleryGrid,
+  type GalleryItem,
+} from "@/components/gallery/gallery-grid";
 
 export const metadata = {
   title: "Gallery | Grand Cottages Kalam",
@@ -86,17 +90,20 @@ export default function GalleryPage() {
   return (
     <>
       <SiteHeader variant="solid" />
-      <main className="flex-1 bg-mist/30 pt-20">
-        <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+      <main className="flex-1 bg-cream pt-20">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
           <div className="max-w-2xl">
-            <h1 className="font-heading text-3xl text-ink sm:text-4xl">Gallery</h1>
-            <p className="mt-3 text-stone">
-              A look at the cottages, the pine-covered ridgeline, and the quiet
-              mornings that make Grand Cottages Kalam feel like home.
+            <FieldNote label="The record" coords="35.49° N · 72.58° E" />
+            <h1 className="mt-5 font-heading text-3xl text-ink sm:text-4xl">
+              Gallery
+            </h1>
+            <p className="mt-5 text-base leading-relaxed text-stone">
+              A look at the cottages, the pine-covered ridgeline, and the
+              quiet mornings that make Grand Cottages Kalam feel like home.
             </p>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-10">
             <GalleryGrid items={ITEMS} />
           </div>
         </div>

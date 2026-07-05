@@ -19,25 +19,34 @@ export function Stepper({
             <div className="flex items-center gap-2">
               <div
                 className={cn(
-                  "flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-medium transition-colors sm:size-8",
-                  done && "bg-river text-white",
-                  active && "bg-amber text-white",
-                  !done && !active && "bg-mist text-stone",
+                  "flex size-7 shrink-0 items-center justify-center border text-xs transition-colors duration-300 sm:size-8",
+                  done && "border-ink bg-ink text-cream",
+                  active && "border-ink bg-transparent text-ink",
+                  !done && !active && "border-ink/25 text-stone/60",
                 )}
               >
-                {done ? <Check className="size-3.5" /> : stepNum}
+                {done ? (
+                  <Check className="size-3.5" strokeWidth={2.5} />
+                ) : (
+                  <span className="price-figure">{stepNum}</span>
+                )}
               </div>
               <span
                 className={cn(
-                  "hidden text-xs font-medium sm:inline sm:text-sm",
-                  active ? "text-ink" : "text-stone",
+                  "field-note hidden text-[10px] sm:inline",
+                  active ? "text-ink" : "text-stone/60",
                 )}
               >
                 {label}
               </span>
             </div>
             {stepNum < steps.length && (
-              <div className="h-px w-4 bg-mist sm:w-10" />
+              <div
+                className={cn(
+                  "h-px w-4 transition-colors duration-300 sm:w-10",
+                  done ? "bg-ink" : "bg-ink/15",
+                )}
+              />
             )}
           </div>
         );

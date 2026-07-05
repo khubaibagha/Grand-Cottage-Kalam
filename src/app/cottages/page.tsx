@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { RoomTypeCard } from "@/components/cottages/room-type-card";
-import { Button } from "@/components/ui/button";
+import { AmbientVideo } from "@/components/site/ambient-video";
+import { FieldNote } from "@/components/site/field-note";
 import { Reveal, RevealStagger, RevealItem } from "@/components/site/reveal";
 import { getRoomTypes } from "@/lib/data";
 
@@ -19,31 +19,32 @@ export default async function CottagesPage() {
     <>
       <SiteHeader variant="transparent" />
       <main className="flex-1">
-        <section className="relative flex h-[55vh] min-h-[420px] items-center justify-center overflow-hidden">
+        <section className="relative flex h-[60svh] min-h-[420px] items-end overflow-hidden bg-pine-deep">
           <Image
             src="/assets/images/exterior-row-overcast-day.jpg"
             alt="Row of cottages at Grand Cottages Kalam"
             fill
             priority
+            sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-ink/40" />
-          <div className="relative z-10 px-5 text-center text-white">
-            <p className="text-xs uppercase tracking-[0.25em] text-amber sm:text-sm">
-              Stay
+          <div className="absolute inset-0 bg-gradient-to-b from-pine-deep/50 via-pine-deep/10 to-pine-deep/80" />
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 sm:px-8 lg:px-10">
+            <p className="field-note text-[10px] text-river-bright sm:text-xs">
+              The cottages
             </p>
-            <h1 className="mt-4 font-heading text-4xl sm:text-6xl">
-              Our Cottages
+            <h1 className="mt-5 font-heading text-4xl text-white sm:text-6xl">
+              Three ways to stay
             </h1>
-            <p className="mx-auto mt-4 max-w-xl text-white/85">
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
               Three layouts, every one of them facing the valley.
             </p>
           </div>
         </section>
 
-        <section className="px-5 py-16 sm:px-8 lg:px-10">
+        <section className="bg-cream px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
           <div className="mx-auto max-w-7xl">
-            <RevealStagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <RevealStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {roomTypes.map((roomType) => (
                 <RevealItem key={roomType.id}>
                   <RoomTypeCard roomType={roomType} />
@@ -53,25 +54,21 @@ export default async function CottagesPage() {
           </div>
         </section>
 
-        <section className="bg-mist/30 px-5 py-16 sm:px-8 lg:px-10">
-          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-center">
-            <Reveal className="relative mx-auto aspect-[9/16] w-full max-w-sm overflow-hidden rounded-2xl">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
+        <section className="border-t border-ink/10 bg-cream px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
+            <Reveal className="relative mx-auto aspect-[9/16] w-full max-w-sm overflow-hidden">
+              <AmbientVideo
+                src="/assets/videos/interior-tour.mp4"
                 poster="/assets/images/interior-bedroom.jpg"
-                className="absolute inset-0 h-full w-full object-cover"
-              >
-                <source src="/assets/videos/interior-tour.mp4" type="video/mp4" />
-              </video>
+                className="absolute inset-0 h-full w-full"
+              />
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="font-heading text-2xl text-ink sm:text-3xl">
+              <FieldNote label="Interiors" />
+              <h2 className="mt-5 font-heading text-3xl text-ink sm:text-4xl">
                 Step inside
               </h2>
-              <p className="mt-4 text-stone">
+              <p className="mt-6 max-w-md text-base leading-relaxed text-stone">
                 Wood-panelled walls, working fireplaces, and proper heating —
                 every cottage is built for the mountain weather, not just the
                 view of it. Take a quick look around before you book.
@@ -80,31 +77,32 @@ export default async function CottagesPage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden px-5 py-20 sm:px-8 lg:px-10">
+        <section className="relative overflow-hidden px-5 py-28 sm:px-8 sm:py-32 lg:px-10">
           <Image
             src="/assets/images/exterior-night-pathway.jpg"
             alt="Grand Cottages Kalam at night"
             fill
+            sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-ink/65" />
+          <div className="absolute inset-0 bg-pine-deep/70" />
           <Reveal className="relative z-10 mx-auto max-w-2xl text-center text-white">
-            <h2 className="font-heading text-3xl sm:text-4xl">
-              Not sure which cottage fits?
-            </h2>
-            <p className="mt-3 text-white/80">
-              Message us your group size and dates — we&apos;ll point you to
-              the right one.
+            <p className="field-note text-[10px] text-river-bright">
+              Not sure which fits?
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="mt-7 h-auto rounded-xl bg-amber px-8 py-3 text-base text-white hover:bg-amber/90"
+            <h2 className="mt-6 font-heading text-3xl sm:text-4xl">
+              Tell us who&apos;s coming
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/70">
+              Message us your group size and dates — we&apos;ll point you to
+              the right cottage.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-9 inline-flex items-center bg-cream px-9 py-3.5 text-[13px] tracking-[0.08em] text-ink transition-colors duration-500 hover:bg-white"
             >
-              <Link href="/contact">
-                Ask us <ArrowRight className="size-4" />
-              </Link>
-            </Button>
+              Ask us
+            </Link>
           </Reveal>
         </section>
       </main>
