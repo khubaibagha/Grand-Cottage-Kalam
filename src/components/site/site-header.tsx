@@ -62,7 +62,7 @@ export function SiteHeader({
             onClick={() => setOpen(false)}
             className="group relative z-50 flex flex-col leading-none text-white"
           >
-            <span className="font-heading text-sm tracking-[0.08em] sm:text-base">
+            <span className="font-heading text-sm font-bold tracking-[0.08em] sm:text-base">
               Grand Cottages
             </span>
             <span className="field-note mt-1 text-[9px] text-river-bright transition-colors duration-300 group-hover:text-white sm:text-[10px]">
