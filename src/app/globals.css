@@ -68,6 +68,13 @@
      Legacy token names are kept so every page inherits the new system:
      pine = spruce dark canvas · cream = birch paper · river = glacial teal
      amber = lantern gold (micro-doses only) */
+  /* Typeface — Gudlack (loaded in layout.tsx as --font-gudlack) fills every
+     role; hierarchy comes from weight + tracking. Legacy token names are kept
+     so the whole component tree inherits it. */
+  --font-display: var(--font-gudlack);
+  --font-body: var(--font-gudlack);
+  --font-note: var(--font-gudlack);
+
   --pine: #111a14;
   --pine-deep: #0b130e;
   --moss: #41684f;
@@ -153,7 +160,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "ss01" on;
+    font-weight: 400;
     text-rendering: optimizeLegibility;
   }
   html {
@@ -164,8 +171,15 @@
   h3,
   h4 {
     @apply font-heading;
-    font-weight: 400;
-    letter-spacing: 0.005em;
+    /* Gudlack is a geometric display sans — it wants tight tracking and real
+       weight to hold presence against the photography. */
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+  h1 {
+    /* Hero / page titles carry the most weight. */
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
   ::selection {
     background-color: var(--river);
